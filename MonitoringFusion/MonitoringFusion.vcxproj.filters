@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\DataBase">
+      <UniqueIdentifier>{a058c8bc-fad6-475b-b7b3-48a526014699}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DataBase">
+      <UniqueIdentifier>{e2f4b30a-7e85-4d4a-994e-7dbf6282ea67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\sensor">
+      <UniqueIdentifier>{7cac9ace-6491-4772-93aa-ae85a4f2f0bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\sensor">
+      <UniqueIdentifier>{1999ce58-6db2-4307-96ff-76a4ee1c118a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\CameraCtrl">
+      <UniqueIdentifier>{584f8657-108a-47ac-b38a-305392992983}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\CameraCtrl">
+      <UniqueIdentifier>{a02c3040-0a1a-44ca-826c-58968f47f9bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\logicalCtrl">
+      <UniqueIdentifier>{5f2c2091-83f8-49cd-87c5-562211645d9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\logicalCtrl">
+      <UniqueIdentifier>{30481623-aad3-44af-9716-7b9bcf82736f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MonitoringFusion.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MonitoringFusionDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sensor\crc16.h">
+      <Filter>头文件\sensor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sensor\ModbusRtuHandler.h">
+      <Filter>头文件\sensor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sensor\SerialPort.h">
+      <Filter>头文件\sensor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sensor\WirelessRangingHandler.h">
+      <Filter>头文件\sensor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database\Alarm_WarnDlg.h">
+      <Filter>头文件\DataBase</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database\CAR.h">
+      <Filter>头文件\DataBase</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database\CONSTANT.h">
+      <Filter>头文件\DataBase</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database\login.h">
+      <Filter>头文件\DataBase</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database\stationDlg.h">
+      <Filter>头文件\DataBase</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cameraCtrl\CameraControl.h">
+      <Filter>头文件\CameraCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cameraCtrl\HCNetSDK.h">
+      <Filter>头文件\CameraCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\logicalCtrl\Function.h">
+      <Filter>头文件\logicalCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\logicalCtrl\GeneralDef.h">
+      <Filter>头文件\logicalCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\logicalCtrl\global.h">
+      <Filter>头文件\logicalCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\logicalCtrl\LogicControl.h">
+      <Filter>头文件\logicalCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\logicalCtrl\plaympeg4.h">
+      <Filter>头文件\logicalCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\logicalCtrl\PreviewStatic.h">
+      <Filter>头文件\logicalCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\logicalCtrl\MFCApplication3Dlg.h">
+      <Filter>头文件\logicalCtrl</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MonitoringFusion.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MonitoringFusionDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\database\Alarm_WarnDlg.cpp">
+      <Filter>源文件\DataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="src\database\CAR.cpp">
+      <Filter>源文件\DataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="src\database\CONSTANT.cpp">
+      <Filter>源文件\DataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="src\database\login.cpp">
+      <Filter>源文件\DataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="src\database\stationDlg.cpp">
+      <Filter>源文件\DataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sensor\crc16.cpp">
+      <Filter>源文件\sensor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sensor\ModbusRtuHandler.cpp">
+      <Filter>源文件\sensor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sensor\SerialPort.cpp">
+      <Filter>源文件\sensor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sensor\WirelessRangingHandler.cpp">
+      <Filter>源文件\sensor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cameraCtrl\CameraControl.cpp">
+      <Filter>源文件\CameraCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\logicalCtrl\Function.cpp">
+      <Filter>源文件\logicalCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\logicalCtrl\LogicControl.cpp">
+      <Filter>源文件\logicalCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\logicalCtrl\MFCApplication3Dlg.cpp">
+      <Filter>源文件\logicalCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\logicalCtrl\PreviewStatic.cpp">
+      <Filter>源文件\logicalCtrl</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MonitoringFusion.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\MonitoringFusion.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\MonitoringFusion.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\login_bg.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\logo.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\green.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\red.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\yellow.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
