@@ -3,8 +3,8 @@
 #include <vector>
 #include <string>
 #include <map>
-#include "../../include/cameraCtrl/HCNetSDK.h"
 #include "GeneralDef.h"
+#include "../../include/cameraCtrl/HCNetSDK.h"
 
 typedef std::pair<std::string, LONG> PAIR_IP2CAMERA;
 
@@ -28,15 +28,13 @@ private:
 
 public:
 	CPreviewStatic(CWnd* pParentWnd);
-	//添加一个函数SetParentWnd(CWnd* pParentWnd)
-	CPreviewStatic();
-	void SetParentWnd(CWnd* pParentWnd);
+
 	void SetControlID(LONG controlID);
 
 	//bool DoLogin(std::string& devIP, int& devPort, std::string& user, std::string& password);
 
 	void StartPlay(std::string& devIP, std::vector<PAIR_IP2CAMERA>& cameras, int iChanIndex);
 
-	void StopPlay();
+	bool  StopPlay();
 };
 

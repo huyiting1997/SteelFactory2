@@ -2,8 +2,8 @@
 
 
 // login 对话框
-#include "../../MonitoringFusionDlg.h"
 #include "../logicalCtrl/MFCApplication3Dlg.h"
+
 class login : public CDialogEx
 {
 	DECLARE_DYNAMIC(login)
@@ -33,7 +33,7 @@ public:
 
 	CFont m_editFont;
 	CStatic m_static_title;
-	CMonitoringFusionDlg m_dlgMonitoringFusion;
-	CMFCApplication3Dlg* m_dlgMFCApplication3;
+
+	CMFCApplication3Dlg m_MFCApplication3Dlg;
 
 };

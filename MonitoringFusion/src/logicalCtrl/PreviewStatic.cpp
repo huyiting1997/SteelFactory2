@@ -1,28 +1,14 @@
+#include<algorithm>
 #include "../../pch.h"
 #include "../../include/logicalCtrl/PreviewStatic.h"
-#include<algorithm>
-
 
 CPreviewStatic::CPreviewStatic(CWnd* pParentWnd) :
 	m_lControlID(-1),
 	m_lRealPlayHandle(-1),
-	m_pParentWnd(pParentWnd),//在无参构造里面改为null
+	m_pParentWnd(pParentWnd),
 	m_bIsPlaying(false),
 	m_lPlayHandle(-1)
 {
-}
-
-CPreviewStatic::CPreviewStatic() :
-	m_lControlID(-1),
-	m_lRealPlayHandle(-1),
-	m_pParentWnd(NULL),//在无参构造里面改为null
-	m_bIsPlaying(false),
-	m_lPlayHandle(-1)
-{
-}
-
-void CPreviewStatic::SetParentWnd(CWnd* pParentWnd) {
-	m_pParentWnd = pParentWnd;
 }
 
 void CPreviewStatic::SetControlID(LONG controlID)
@@ -47,7 +33,7 @@ void CPreviewStatic::SetControlID(LONG controlID)
 
 void CPreviewStatic::StartPlay(std::string& devIP, std::vector<PAIR_IP2CAMERA>& cameras, int iChanIndex)
 {
-	LONG lLoginID = -1;;
+	LONG lLoginID = -1;
 
 	NET_DVR_CLIENTINFO ClientInfo;
 	ClientInfo.hPlayWnd = m_pParentWnd->GetDlgItem(m_lControlID)->m_hWnd;
@@ -78,12 +64,14 @@ void CPreviewStatic::StartPlay(std::string& devIP, std::vector<PAIR_IP2CAMERA>& 
 	m_bIsPlaying = TRUE;
 }
 
-void CPreviewStatic::StopPlay()
+bool  CPreviewStatic::StopPlay()
 {
 	if (m_lPlayHandle != -1) {
 		NET_DVR_StopRealPlay(m_lPlayHandle);
 		m_lPlayHandle = -1;
 		m_bIsPlaying = FALSE;
+		return true;
 	}
+	return false;
 }
 

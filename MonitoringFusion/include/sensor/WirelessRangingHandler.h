@@ -1,10 +1,8 @@
 #pragma once
 #include <afxwin.h>
-
-
 #include <stdint.h>
-#include "SerialPort.h"
 #include <map>
+#include "SerialPort.h"
 
 #define WM_WIRELESS_RX_FRAME            WM_USER + 130
 #define WM_WIRELESS_TX_FRAME            WM_USER + 131
@@ -29,7 +27,6 @@ class WirelessRangingHandler : public CWnd
 
 public:
     WirelessRangingHandler(CWnd* pParentWnd);
-    WirelessRangingHandler();
     virtual ~WirelessRangingHandler();
 
 
@@ -43,9 +40,9 @@ public:
     int     openPort(UINT portnr = 1, UINT baud = 9600, UINT databits = 8, UINT stopsbits = ONESTOPBIT, TCHAR parity = _T('N'));
     void    closePort();
 
-    void    SetTagPosition();
+    void    SetTagPosition(std::vector<std::pair<int, double>>data_tagPosition);
 
-    bool    GetRangingInfo(double& stationPosition, double& nearestTagPosition);
+    bool    GetRangingInfo(double& stationPosition, double& nearestTagPosition,int& tagID);
 
 private:
     itas109::CSerialPort m_serialPort;

@@ -1,15 +1,12 @@
 ﻿// login.cpp: 实现文件
-//
-
-#include "../../pch.h"
-#include "../../resource.h"
-#include "../database/login.h"
 
 #include "afxdialogex.h"
-//#include "../../MonitoringFusionDlg.h"
 #include <winsock.h> //注意顺序，要放在mysql.h前
 #include <mysql.h>//控制台项目中要在mysql.h之前include <winsock.h>
-
+#include "../../pch.h"
+#include "../../resource.h"
+#include "../../MonitoringFusionDlg.h"
+#include "../database/login.h"
 
 // login 对话框
 
@@ -34,8 +31,8 @@ void login::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_LOGIN_EDIT_username, m_username);
 	DDX_Text(pDX, IDC_LOGIN_EDIT_password, m_password);
 
-	DDX_Control(pDX, IDC_LOGIN_COMBO_ROLE, m_selectRoleCombo);
-	DDX_Control(pDX, IDC_LOGIN_STATIC_TITLE, m_static_title);
+	DDX_Control(pDX, IDC_COMBO1, m_selectRoleCombo);
+	DDX_Control(pDX, IDC_STATIC_TITLE, m_static_title);
 }
 
 
@@ -138,8 +135,8 @@ void login::OnBnClickedButton1() //登录按钮
 				mysql_free_result(res);
 				mysql_close(connect);
 				CDialog::EndDialog(IDC_LOGIN_BUTTON_login);//点击登录按钮后关闭登录对话框
-				/*CMonitoringFusionDlg MonitoringFusionDlg;*/ //这个最好是成员变量，不能做局部变量 1027AM
-				m_dlgMonitoringFusion.DoModal();
+				CMonitoringFusionDlg MonitoringFusionDlg; //这个最好是成员变量，不能做局部变量 1027AM
+				MonitoringFusionDlg.DoModal();
 			}
 			else
 			{
@@ -190,8 +187,7 @@ void login::OnBnClickedButton1() //登录按钮
 				mysql_close(connect);
 				CDialog::EndDialog(IDC_LOGIN_BUTTON_login);//点击登录按钮后关闭登录对话框
 				//AfxMessageBox(_T("操作员登录成功"));
-				//m_dlgMFCApplication3.DoModal();
-				m_dlgMFCApplication3 = new CMFCApplication3Dlg;
+				m_MFCApplication3Dlg.DoModal();
 			}
 			else
 			{

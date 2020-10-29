@@ -15,8 +15,6 @@ class ModbusRtuHandler : public CWnd
 
 public:
     ModbusRtuHandler(CWnd* pParentWnd);
-    ModbusRtuHandler();
-    //void SetParentWnd(CWnd* pParentWnd);
     virtual ~ModbusRtuHandler();
 
 

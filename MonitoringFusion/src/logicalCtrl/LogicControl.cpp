@@ -1,30 +1,52 @@
+#include<string>
 #include "../../pch.h"
 #include "../../include/logicalCtrl/LogicControl.h"
-#include<string>
 
 LogicControl::LogicControl():
-carNum("111")
+	m_carNum("111")
 {
 	//从数据库中拿出常量
-	C_workRange = data_operate.getConstantWorkRange();
-	C_ReadingDis = data_operate.getConstantReadingDis();
-	C_LaunchDistance = data_operate.getConstantLaunchDistance();
-	C_TrolleyDistance = data_operate.getConstantTrolleyDistance();
-	C_trackFirL = data_operate.getConstantTrackFirL();
-	C_trackFirR = data_operate.getConstantTrackFirR();
-	C_trackSecL = data_operate.getConstantTrackSecL();
-	C_trackSecR = data_operate.getConstantTrackSecR();
-	C_trackThirdL = data_operate.getConstantTrackThirdL();
-	C_trackThirdR = data_operate.getConstantTrackThirdR();
-	globalIP = data_operate.getCarIPGlobal(carNum);
+	//C_workRange = m_data_operate.getConstantWorkRange();
+	//C_ReadingDis =m_data_operate.getConstantReadingDis();
+	//C_LaunchDistance = m_data_operate.getConstantLaunchDistance();
+	//C_TrolleyDistance = m_data_operate.getConstantTrolleyDistance();
+	//C_trackFirL = m_data_operate.getConstantTrackFirL();
+	//C_trackFirR = m_data_operate.getConstantTrackFirR();
+	//C_trackSecL = m_data_operate.getConstantTrackSecL();
+	//C_trackSecR = m_data_operate.getConstantTrackSecR();
+	//C_trackThirdL = m_data_operate.getConstantTrackThirdL();
+	//C_trackThirdR = m_data_operate.getConstantTrackThirdR();
+	////m_globalIP = m_data_operate.getCarIPGlobal(m_carNum);
+	//m_data_operate.getCarIPGlobal(m_carNum, m_globalIP);
 	
 }
 void LogicControl::getCameraIP()
 {
-	StationIPArray=data_operate.getStationInfoIP();
-	CarIPArray = data_operate.getCarInfoIP();
-	tagPosition = data_operate.getStationTagInfo();
+	m_StationIPArray= m_data_operate.getStationInfoIP();
+	m_CarIPArray = m_data_operate.getCarInfoIP();
+	m_tagPosition = m_data_operate.getStationTagInfo();
 }
+
+//2020-10-28 徐嘉辉修改   访问数据库，初始化变量
+void LogicControl::InitParam() {
+	C_workRange = m_data_operate.getConstantWorkRange();
+	C_ReadingDis = m_data_operate.getConstantReadingDis();
+	C_LaunchDistance = m_data_operate.getConstantLaunchDistance();
+	C_TrolleyDistance = m_data_operate.getConstantTrolleyDistance();
+	C_trackFirL = m_data_operate.getConstantTrackFirL();
+	C_trackFirR = m_data_operate.getConstantTrackFirR();
+	C_trackSecL = m_data_operate.getConstantTrackSecL();
+	C_trackSecR = m_data_operate.getConstantTrackSecR();
+	C_trackThirdL = m_data_operate.getConstantTrackThirdL();
+	C_trackThirdR = m_data_operate.getConstantTrackThirdR();
+	//m_globalIP = m_data_operate.getCarIPGlobal(m_carNum);
+	m_data_operate.getCarIPGlobal(m_carNum, m_globalIP);
+
+	m_StationIPArray = m_data_operate.getStationInfoIP();
+	m_CarIPArray = m_data_operate.getCarInfoIP();
+	m_tagPosition = m_data_operate.getStationTagInfo();
+}
+
 
 BOOL LogicControl::judegSitution(std::vector<std::string>& CameraIP,  double disL, double disR, double carDis, int tagID)
 {
@@ -33,10 +55,16 @@ BOOL LogicControl::judegSitution(std::vector<std::string>& CameraIP,  double dis
 	CarCameraIP carIP;
 	StationCameraIP stationIP;
 	if (caminfo.display) {//切入工位
-		
-		stationIP = data_operate.getStationCameraIP((char*)caminfo.stationID.c_str());
+		if (m_data_operate.getStationCameraIP(caminfo.stationID, stationIP) == false)
+		{
+			return false;
+		}
 		//获取工位IP
-		carIP=data_operate.getCarCameraIP(carNum);
+		//carIP= m_data_operate.getCarCameraIP(m_carNum);
+		if (m_data_operate.getCarCameraIP(m_carNum, carIP) == false)
+		{
+			return false;
+		}
 		//获取行车IP（包含四个值）
 		switch (JudgeMargin(disL,disR))
 		{
@@ -112,7 +140,8 @@ BOOL LogicControl::judegSitution(std::vector<std::string>& CameraIP,  double dis
 		switch (JudgeMargin(disL, disR))
 		{
 			//获取行车上的四个IP
-			carIP = data_operate.getCarCameraIP(carNum);
+			//carIP = m_data_operate.getCarCameraIP(m_carNum);
+			m_data_operate.getCarCameraIP(m_carNum, carIP);
 		case 0:
 			//一次切入行车上的四个摄像头IP
 			CameraIP.push_back(carIP.leftDownIP);
@@ -211,7 +240,7 @@ std::string LogicControl::nearestStationnum(int tagID, double modbusCarDis)
 		tagID = tagID / 10;
 	}
 	a =(char*) str.c_str();
-	trackStationNum=data_operate.getTrackStationNum(a);
+	trackStationNum= m_data_operate.getTrackStationNum(a);
 	int track=JudgeTrack(modbusCarDis);
 	std::string stationNum;
 	if (track) {//进入了轨道

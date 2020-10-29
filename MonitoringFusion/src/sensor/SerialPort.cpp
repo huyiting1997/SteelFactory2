@@ -30,7 +30,6 @@
 */
 
 #include "../../pch.h"
-//#include "../../include/sensor/SerialPort.h"
 #include "../../include/sensor/SerialPort.h"
 #include "assert.h"
 #include <initguid.h>//GUID

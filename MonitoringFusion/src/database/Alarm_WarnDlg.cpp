@@ -1,12 +1,11 @@
 ﻿// Alarm_WarnDlg.cpp: 实现文件
-//
 
-#include "../../pch.h"
-#include "../../include/database/Alarm_WarnDlg.h"
-#include "../../resource.h"
 #include "afxdialogex.h"
 #include <winsock.h> //注意顺序，要放在mysql.h前
 #include <mysql.h>//控制台项目中要在mysql.h之前include <winsock.h>
+#include "../../pch.h"
+#include "../../resource.h"
+#include "../../include/database/Alarm_WarnDlg.h"
 
 // Alarm_WarnDlg 对话框
 
@@ -26,19 +25,19 @@ Alarm_WarnDlg::~Alarm_WarnDlg()
 void Alarm_WarnDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_ALARM_WARN_LIST_SHOW_DATA, m_list_alarm_warn);
-	DDX_Control(pDX, IDC_ALARM_WARN_EDIT_EDITDATA, m_edit_aw);
-	DDX_Text(pDX, IDC_ALARM_WARN_EDIT_SELECT_CARNUM, m_selnum_aw);
+	DDX_Control(pDX, IDC_LIST1, m_list_alarm_warn);
+	DDX_Control(pDX, IDC_EDIT1, m_edit_aw);
+	DDX_Text(pDX, IDC_EDIT4, m_selnum_aw);
 }
 
 
 BEGIN_MESSAGE_MAP(Alarm_WarnDlg, CDialogEx)
-	ON_NOTIFY(NM_DBLCLK, IDC_ALARM_WARN_LIST_SHOW_DATA, &Alarm_WarnDlg::OnNMDblclkList1)
-	ON_EN_KILLFOCUS(IDC_ALARM_WARN_EDIT_EDITDATA, &Alarm_WarnDlg::OnEnKillfocusEdit1)
-	ON_BN_CLICKED(IDC_ALARM_WARN_BUTTON_DELETE, &Alarm_WarnDlg::OnBnClickedButton1)
-	ON_BN_CLICKED(IDC_ALARM_WARN_BUTTON_INSERT, &Alarm_WarnDlg::OnBnClickedButton2)
-	ON_BN_CLICKED(IDC_ALARM_WARN_BUTTON_SELECT, &Alarm_WarnDlg::OnBnClickedButton3)
-	ON_BN_CLICKED(IDC_ALARM_WARN_BUTTON_FRUSH, &Alarm_WarnDlg::OnBnClickedButton4)
+	ON_NOTIFY(NM_DBLCLK, IDC_LIST1, &Alarm_WarnDlg::OnNMDblclkList1)
+	ON_EN_KILLFOCUS(IDC_EDIT1, &Alarm_WarnDlg::OnEnKillfocusEdit1)
+	ON_BN_CLICKED(IDC_BUTTON1, &Alarm_WarnDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON2, &Alarm_WarnDlg::OnBnClickedButton2)
+	ON_BN_CLICKED(IDC_BUTTON3, &Alarm_WarnDlg::OnBnClickedButton3)
+	ON_BN_CLICKED(IDC_BUTTON4, &Alarm_WarnDlg::OnBnClickedButton4)
 	ON_WM_PAINT()
 	ON_WM_CTLCOLOR()
 
@@ -817,7 +816,7 @@ BOOL Alarm_WarnDlg::PreTranslateMessage(MSG* pMsg)
 	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_RETURN)
 	{
 		// 如果消息是键盘按下事件，且是Entert键，执行以下代码（什么都不做，你可以自己添加想要的代码）
-		GetDlgItem(IDC_ALARM_WARN_BUTTON_FRUSH)->SetFocus();
+		GetDlgItem(IDC_BUTTON4)->SetFocus();
 		return TRUE;
 	}
 	return CDialogEx::PreTranslateMessage(pMsg);

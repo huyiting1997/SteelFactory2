@@ -5,21 +5,17 @@
 #pragma once
 #include<vector>
 #include<string>
-#include"../../include/cameraCtrl/HCNetSDK.h"
+#include "afxdialogex.h"
 #include"GeneralDef.h"
 #include"PreviewStatic.h"
 #include"LogicControl.h"
+#include"../../include/cameraCtrl/HCNetSDK.h"
 #include"../../include/sensor/ModbusRtuHandler.h"
 #include"../../include/sensor/WirelessRangingHandler.h"
-#include "afxdialogex.h"
-
-
 
 // CMFCApplication3Dlg 对话框
 class CMFCApplication3Dlg : public CDialogEx
 {
-	DECLARE_DYNAMIC(CMFCApplication3Dlg)
-
 // 构造
 public:
 	CMFCApplication3Dlg(CWnd* pParent = nullptr);	// 标准构造函数
@@ -73,7 +69,7 @@ public:
 	double  nearestTagPosition;//最近的标签距离
 	int     tagID;//最近的标签ID
 
-	LogicControl logic;//控制层对象
+	LogicControl m_logicControl;//控制层对象
 
 	ModbusRtuHandler rtuHandler;//激光串口读取
 	WirelessRangingHandler rangingHandler;//基站读取

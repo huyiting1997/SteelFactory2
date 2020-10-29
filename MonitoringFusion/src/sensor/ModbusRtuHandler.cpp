@@ -1,8 +1,7 @@
+#include <fstream>
 #include "../../pch.h"
 #include "../../include/sensor/ModbusRtuHandler.h"
 #include "../../include/sensor/crc16.h"
-#include <fstream>
-
 
 
 
@@ -13,22 +12,6 @@ ModbusRtuHandler::ModbusRtuHandler(CWnd* pParentWnd)
 	m_rxLength = 0;
 	m_startPosion = -1;
 	//Create(AfxRegisterWndClass(0), L"", WS_OVERLAPPED, CRect(0, 0, 2, 2), nullptr, 0, nullptr);
-
-    //2020_10_13，刘钢修改，设置缺省设备地址、寄存器地址、读写周期
-    m_deviceAddress = 1;
-    m_readBeginAddress = 0;
-    m_readEndAddress = 4;
-    m_readPeriod = 100;
-    m_bMeasureUpdate = false;
-
-    //2020_10_13，刘钢修改，初始化临界资源
-    InitializeCriticalSection(&m_csModbusSync);
-}
-
-ModbusRtuHandler::ModbusRtuHandler() {
-    m_rxLength = 0;
-    m_startPosion = -1;
-    //Create(AfxRegisterWndClass(0), L"", WS_OVERLAPPED, CRect(0, 0, 2, 2), nullptr, 0, nullptr);
 
     //2020_10_13，刘钢修改，设置缺省设备地址、寄存器地址、读写周期
     m_deviceAddress = 1;
@@ -90,7 +73,7 @@ void ModbusRtuHandler::OnTimer(UINT_PTR nIDEvent)
 }
 
 //  2020_10_15,刘钢修改
-//std::ofstream Modbus_LOG("../modbus_log.txt");
+std::ofstream Modbus_LOG("../modbus_log.txt");
 
 afx_msg LRESULT ModbusRtuHandler::OnCommRxChar(WPARAM ch, LPARAM port) {
 
@@ -147,6 +130,11 @@ afx_msg LRESULT ModbusRtuHandler::OnCommRxChar(WPARAM ch, LPARAM port) {
         break;
     }
 
+    for (int i = 0; i < length; i++) {
+        Modbus_LOG << "0x" << std::hex << (int)m_frameData[i] << "  ";
+    }
+    Modbus_LOG << std::endl << std::endl;
+
     if (length > (m_rxLength - m_startPosion)) {
         return 2;
     }
@@ -171,11 +159,6 @@ afx_msg LRESULT ModbusRtuHandler::OnCommRxChar(WPARAM ch, LPARAM port) {
 
     //2020_10_13，刘钢修改，不向主界面发送Modbus读数据消息
     //::SendMessage(GetParent()->GetSafeHwnd(), WM_MODBUS_RX_FRAME, (WPARAM)frameData, (LPARAM)length);
-
-    //for (int i = 0; i < length; i++){
-    //    Modbus_LOG << "0x" << std::hex << (int)m_frameData[i] << "  ";
-    //}
-    //Modbus_LOG << std::endl << std::endl;
 
     //2020_10_13，刘钢修改，读取Modbus数据
     short data1 = (m_frameData[3] << 8) | m_frameData[4];

@@ -1,12 +1,11 @@
 ﻿// CONSTANT.cpp: 实现文件
-//
 
-#include "../../pch.h"
-#include "../../resource.h"
-#include "../../include/database/CONSTANT.h"
 #include "afxdialogex.h"
 #include <winsock.h> //注意顺序，要放在mysql.h前
 #include <mysql.h>//控制台项目中要在mysql.h之前include <winsock.h>
+#include "../../pch.h"
+#include "../../resource.h"
+#include "../../include/database/CONSTANT.h"
 
 // CONSTANT 对话框
 
@@ -25,16 +24,16 @@ CONSTANT::~CONSTANT()
 void CONSTANT::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_CONSTANT_LIST_SHOW_DATA, m_list_constant);
-	DDX_Control(pDX, IDC_CONSTANT_EDIT_EDITDATA, m_edit_constant);
+	DDX_Control(pDX, IDC_LIST1, m_list_constant);
+	DDX_Control(pDX, IDC_EDIT1, m_edit_constant);
 }
 
 
 BEGIN_MESSAGE_MAP(CONSTANT, CDialogEx)
-	ON_NOTIFY(NM_DBLCLK, IDC_CONSTANT_LIST_SHOW_DATA, &CONSTANT::OnNMDblclkList1)
-	ON_EN_KILLFOCUS(IDC_CONSTANT_EDIT_EDITDATA, &CONSTANT::OnEnKillfocusEdit1)
-	ON_BN_CLICKED(IDC_CONSTANT_BUTTON_INSERT, &CONSTANT::OnBnClickedButton2)
-	ON_BN_CLICKED(IDC_CONSTANT_BUTTON_FRUSH, &CONSTANT::OnBnClickedButton3)
+	ON_NOTIFY(NM_DBLCLK, IDC_LIST1, &CONSTANT::OnNMDblclkList1)
+	ON_EN_KILLFOCUS(IDC_EDIT1, &CONSTANT::OnEnKillfocusEdit1)
+	ON_BN_CLICKED(IDC_BUTTON2, &CONSTANT::OnBnClickedButton2)
+	ON_BN_CLICKED(IDC_BUTTON3, &CONSTANT::OnBnClickedButton3)
 	ON_WM_PAINT()
 	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
@@ -620,7 +619,7 @@ BOOL CONSTANT::PreTranslateMessage(MSG* pMsg)
 	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_RETURN)
 	{
 		// 如果消息是键盘按下事件，且是Entert键，执行以下代码（什么都不做，你可以自己添加想要的代码）
-		GetDlgItem(IDC_CONSTANT_BUTTON_FRUSH)->SetFocus();
+		GetDlgItem(IDC_BUTTON3)->SetFocus();
 		return TRUE;
 	}
 	return CDialogEx::PreTranslateMessage(pMsg);

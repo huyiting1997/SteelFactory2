@@ -1,13 +1,13 @@
 #pragma once
 
 #include "Windows.h"
-#include "./HCNetSDK.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 #include <iomanip>
 #include <conio.h>
+#include "./HCNetSDK.h"
 using namespace std;
 
 #define PI 3.1415926

@@ -13,7 +13,7 @@ typedef int BOOL;  //定义BOOL类型作为返回值
 
 
 struct RfidCam {
-	std::string stationID;
+	std::string stationID; //基站ID还是工位ID？？？
 	bool display;
 };
 struct CarCameraIP {

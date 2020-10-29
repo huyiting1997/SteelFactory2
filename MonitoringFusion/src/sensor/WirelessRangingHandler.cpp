@@ -1,9 +1,8 @@
-#include "../../pch.h"
-//#include "../../include/sensor/WirelessRangingHandler.h"
-#include "../../include/sensor/WirelessRangingHandler.h"
 #include <limits>
 #include <algorithm>
 #include <fstream>
+#include "../../pch.h"
+#include "../../include/sensor/WirelessRangingHandler.h"
 
 #define MAX_PACK_LEN            20
 #define FRAME_LENGTH            21
@@ -24,18 +23,6 @@ WirelessRangingHandler::WirelessRangingHandler(CWnd* pParentWnd) :
     m_bTagDataUpdate(false)
 {
 }
-WirelessRangingHandler::WirelessRangingHandler() :
-    m_readPeriod(500),
-    m_rxLength(0),
-    m_frameLength(-1),
-    m_startPosition(-1),
-    m_tagCount(0),
-    m_stationPosition(-1),
-    m_nearestTagPosition(-1),
-    m_bTagDataUpdate(false)
-{
-}
-
 
 WirelessRangingHandler::~WirelessRangingHandler()
 {
@@ -223,22 +210,27 @@ void WirelessRangingHandler::closePort()
     m_serialPort.ClosePort();
 }
 
-void WirelessRangingHandler::SetTagPosition() //从数据库读取，待修改1020PM
+void WirelessRangingHandler::SetTagPosition(std::vector<std::pair<int,double>>data_tagPosition) //从数据库读取，待修改1020PM
 {
-    m_mapTag2Position.insert(std::pair<int, double>(4, 5.0));
-    m_mapTag2Position.insert(std::pair<int, double>(3, 10.0));
-    m_mapTag2Position.insert(std::pair<int, double>(2, 15.0));
-    m_mapTag2Position.insert(std::pair<int, double>(1, 20.0));
+    //m_mapTag2Position.insert(std::pair<int, double>(4, 5.0));
+    ////m_mapTag2Position.insert(std::pair<int, double>(3, 10.0));
+    ////m_mapTag2Position.insert(std::pair<int, double>(2, 15.0));
+    ////m_mapTag2Position.insert(std::pair<int, double>(1, 20.0));
+    for (int i = 0; i < data_tagPosition.size(); i++) {
+        m_mapTag2Position.insert(data_tagPosition[i]);
+   }
 }
 
-bool WirelessRangingHandler::GetRangingInfo(double& stationPosition, double& nearestTagPosition)
+bool WirelessRangingHandler::GetRangingInfo(double& stationPosition, double& nearestTagPosition,int& tagID)
 {
-    if (!m_serialPort.IsOpened() || m_bTagDataUpdate == false)
+   /* if (!m_serialPort.IsOpened() || m_bTagDataUpdate == false)
+        return false;*/
+    if (!m_serialPort.IsOpened() )
         return false;
-
     EnterCriticalSection(&m_cs);
     stationPosition = m_stationPosition;
     nearestTagPosition = m_nearestTagPosition;
+    tagID = m_nearestTagID;
     LeaveCriticalSection(&m_cs);
 
     return true;

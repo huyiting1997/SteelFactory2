@@ -1,12 +1,13 @@
 ﻿// CAR.cpp: 实现文件
 //
 
-#include "../../pch.h"
-#include "../../include/database/CAR.h"
-#include "../../resource.h"
+
 #include "afxdialogex.h"
 #include <winsock.h> //注意顺序，要放在mysql.h前
 #include <mysql.h>//控制台项目中要在mysql.h之前include <winsock.h>
+#include "../../pch.h"
+#include "../../resource.h"
+#include "../../include/database/CAR.h"
 
 // CAR 对话框
 
@@ -26,19 +27,19 @@ CAR::~CAR()
 void CAR::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_CAR_LIST_SHOW_DATA, m_list_car);
-	DDX_Control(pDX, IDC_CAR_EDIT_EDITDATA, m_edit);
-	DDX_Text(pDX, IDC_CAR_EDIT_CARNUM, m_num_car_select);
+	DDX_Control(pDX, IDC_LIST1, m_list_car);
+	DDX_Control(pDX, IDC_EDIT2, m_edit);
+	DDX_Text(pDX, IDC_EDIT4, m_num_car_select);
 }
 
 
 BEGIN_MESSAGE_MAP(CAR, CDialogEx)
-	ON_BN_CLICKED(IDC_CAR_BUTTON_DELETE, &CAR::OnBnClickedButton1)
-	ON_NOTIFY(NM_DBLCLK, IDC_CAR_LIST_SHOW_DATA, &CAR::OnNMDblclkList1)
-	ON_EN_KILLFOCUS(IDC_CAR_EDIT_EDITDATA, &CAR::OnEnKillfocusEdit2)
-	ON_BN_CLICKED(IDC_CAR_BUTTON_INSERT, &CAR::OnBnClickedButton2)
-	ON_BN_CLICKED(IDC_CAR_BUTTON_FRUSH, &CAR::OnBnClickedButton3)
-	ON_BN_CLICKED(IDC_CAR_BUTTON_SELECT, &CAR::OnBnClickedButton4)
+	ON_BN_CLICKED(IDC_BUTTON1, &CAR::OnBnClickedButton1)
+	ON_NOTIFY(NM_DBLCLK, IDC_LIST1, &CAR::OnNMDblclkList1)
+	ON_EN_KILLFOCUS(IDC_EDIT2, &CAR::OnEnKillfocusEdit2)
+	ON_BN_CLICKED(IDC_BUTTON2, &CAR::OnBnClickedButton2)
+	ON_BN_CLICKED(IDC_BUTTON3, &CAR::OnBnClickedButton3)
+	ON_BN_CLICKED(IDC_BUTTON4, &CAR::OnBnClickedButton4)
 	ON_WM_PAINT()
 	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
@@ -854,7 +855,7 @@ BOOL CAR::PreTranslateMessage(MSG* pMsg)
 	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_RETURN)
 	{
 		// 如果消息是键盘按下事件，且是Entert键，执行以下代码（什么都不做，你可以自己添加想要的代码）
-		GetDlgItem(IDC_CAR_BUTTON_FRUSH)->SetFocus();
+		GetDlgItem(IDC_BUTTON3)->SetFocus();
 		return TRUE;
 	}
 	return CDialogEx::PreTranslateMessage(pMsg);

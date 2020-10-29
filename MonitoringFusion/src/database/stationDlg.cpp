@@ -1,13 +1,11 @@
 ﻿// stationDlg.cpp: 实现文件
-//
 
-#include "../../pch.h"
-#include "../../resource.h"
 #include "afxdialogex.h"
-#include "../../include/database/stationDlg.h"
-
 #include <winsock.h> //注意顺序，要放在mysql.h前
 #include <mysql.h>//控制台项目中要在mysql.h之前include <winsock.h>
+#include "../../pch.h"
+#include "../../resource.h"
+#include "../../include/database/stationDlg.h"
 
 // stationDlg 对话框
 
@@ -27,19 +25,19 @@ stationDlg::~stationDlg()
 void stationDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_STATION_LIST_SHOW_DATA, m_list_station);
-	DDX_Control(pDX, IDC_STATION_EDIT_EDITDATA, m_edit_s);
-	DDX_Text(pDX, IDC_STATION_EDIT_STANUM, m_num_station_select);
+	DDX_Control(pDX, IDC_LIST1, m_list_station);
+	DDX_Control(pDX, IDC_EDIT2, m_edit_s);
+	DDX_Text(pDX, IDC_EDIT4, m_num_station_select);
 }
 
 
 BEGIN_MESSAGE_MAP(stationDlg, CDialogEx)
-	ON_BN_CLICKED(IDC_STATION_BUTTON_DELETE, &stationDlg::OnBnClickedButton1)
-	ON_NOTIFY(NM_DBLCLK, IDC_STATION_LIST_SHOW_DATA, &stationDlg::OnNMDblclkList1)
-	ON_EN_KILLFOCUS(IDC_STATION_EDIT_EDITDATA, &stationDlg::OnEnKillfocusEdit2)
-	ON_BN_CLICKED(IDC_STATION_BUTTON_INSERT, &stationDlg::OnBnClickedButton2)
-	ON_BN_CLICKED(IDC_STATION_BUTTON_FRUSH, &stationDlg::OnBnClickedButton3)
-	ON_BN_CLICKED(IDC_STATION_BUTTON_SELECT, &stationDlg::OnBnClickedButton4)
+	ON_BN_CLICKED(IDC_BUTTON1, &stationDlg::OnBnClickedButton1)
+	ON_NOTIFY(NM_DBLCLK, IDC_LIST1, &stationDlg::OnNMDblclkList1)
+	ON_EN_KILLFOCUS(IDC_EDIT2, &stationDlg::OnEnKillfocusEdit2)
+	ON_BN_CLICKED(IDC_BUTTON2, &stationDlg::OnBnClickedButton2)
+	ON_BN_CLICKED(IDC_BUTTON3, &stationDlg::OnBnClickedButton3)
+	ON_BN_CLICKED(IDC_BUTTON4, &stationDlg::OnBnClickedButton4)
 	ON_WM_PAINT()
 	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
@@ -809,7 +807,7 @@ BOOL stationDlg::PreTranslateMessage(MSG* pMsg)
 	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_RETURN)
 	{
 		// 如果消息是键盘按下事件，且是Entert键，执行以下代码（什么都不做，你可以自己添加想要的代码）
-		GetDlgItem(IDC_STATION_BUTTON_FRUSH)->SetFocus();
+		GetDlgItem(IDC_BUTTON3)->SetFocus();
 		return TRUE;
 	}
 	return CDialogEx::PreTranslateMessage(pMsg);
